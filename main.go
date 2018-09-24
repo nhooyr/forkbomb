@@ -40,6 +40,7 @@ func main() {
 
 		cmd := exec.Command(os.Args[0], deadlineStr)
 		cmd.SysProcAttr = &syscall.SysProcAttr{
+			// Otherwise an interrupt in `go run` completely stops it.
 			Setpgid: true,
 		}
 		err = cmd.Start()
